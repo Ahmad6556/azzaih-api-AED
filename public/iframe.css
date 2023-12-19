@@ -1,0 +1,25 @@
+/*أفقي*/
+@media all and (orientation: landscape) {
+  #yyy{
+      width: 853px;
+      height: 480px;
+  }
+
+  #sss{
+      width: 1000px;
+      height: 1000px;
+  }
+}
+
+/*عمودي*/
+@media all and (orientation: portrait) {
+  #yyy{
+      width: auto;
+      height: auto;
+  }
+
+  #sss{
+      width: 300px;
+      height: 400px;
+  }
+}
