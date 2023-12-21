@@ -56,12 +56,12 @@
       <form class="mx-4" action="/admin" method="post">
         <div class="form-floating mb-3">
           <input value="<%= item.name %>" name="name" type="text" class="form-control bg-dark text-white"
-            id="floatingInput" placeholder="">
+            id="floatingInput" placeholder="" required>
           <label class="text-white" for="floatingInput">أسم العزاء</label>
         </div>
         <div class="form-floating mb-3">
           <input value="<%= item.URL %>" name="URL" type="text" class="form-control bg-dark text-white"
-            id="floatingInput" placeholder="">
+            id="floatingInput" placeholder="" required>
           <label class="text-white" for="floatingInput">الرابط الخاص</label>
         </div>
         <button data-linkid="<%= item._id %>" class="btn btn-primary create">تعديل</button>
