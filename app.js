@@ -50,9 +50,35 @@ app.get('/', (req, res) => {
 
 app.get("/mnuat", (req, res) => {
   azzaih.find()
-  .sort({ "name": 1 })
+    .sort({ "name": 1 })
     .then((result) => {
       res.render("mnuat", { item: result });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+})
+
+//mouled
+
+app.get("/mouled", (req, res) => {
+  azzaih.find()
+    .sort({ "name": 1 })
+    .then((result) => {
+      res.render("mouled", { item: result });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+})
+
+//wfah
+
+app.get("/wfah", (req, res) => {
+  azzaih.find()
+    .sort({ "name": 1 })
+    .then((result) => {
+      res.render("wfah", { item: result });
     })
     .catch((err) => {
       console.log(err);
@@ -63,7 +89,7 @@ app.get("/mnuat", (req, res) => {
 
 app.get("/admin", (req, res) => {
   azzaih.find()
-  .sort({ "name": 1 })
+    .sort({ "name": 1 })
     .then((result) => {
       res.render("admin", { item: result });
     })
@@ -90,7 +116,14 @@ app.post("/admin", (req, res) => {
 //add
 
 app.get("/admin-add", (req, res) => {
-  res.render("admin-add")
+  azzaih.find()
+    .sort({ "name": 1 })
+    .then((result) => {
+      res.render("admin-add", { item: result });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 })
 
 app.post("/admin-add", (req, res) => {
@@ -138,13 +171,13 @@ app.post("/admin-edit/:id", (req, res) => {
 app.delete("/admin-edit/:id", (req, res) => {
   azzaih.findByIdAndDelete(req.params.id)
 
-  .then((params)=> {
-    res.json( {mylink: "/admin"} );
-  })
+    .then((params)=> {
+      res.json( {mylink: "/admin"} );
+    })
 
-  .catch((err)=> {
-    console.log(err);
-  });
+    .catch((err)=> {
+      console.log(err);
+    });
 });
 
 //delete
@@ -162,13 +195,13 @@ app.get("/admin-delete/:id", (req, res) => {
 app.delete("/admin-delete/:id", (req, res) => {
   azzaih.findByIdAndDelete(req.params.id)
 
-  .then((params)=> {
-    res.json( {mylink: "/admin"} );
-  })
+    .then((params) => {
+      res.json({ mylink: "/admin" });
+    })
 
-  .catch((err)=> {
-    console.log(err);
-  });
+    .catch((err) => {
+      console.log(err);
+    });
 });
 
 //support

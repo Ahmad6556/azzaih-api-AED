@@ -42,7 +42,7 @@
               <a class="nav-link active" aria-current="page" href="/">الصفحة الرئيسية</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link disabled" href="/mnuat">منوعات</a>
+              <a class="nav-link disabled" href="/mnuat">عزاء</a>
             </li>
             <li class="nav-item">
               <a class="nav-link active" href="/admin">إدارة العزاء</a>
@@ -62,7 +62,7 @@
   <nav class="nav" style="text-align: right; width: 25%; height: 100%; flex-wrap: wrap;
   flex-direction: column;">
     <% item.forEach(item=> { %>
-      <% if (item.name != null) { %>
+      <% if (item.name != null && item.alnooa == "عزاء") { %>
       <button class="btn text-white my-1 mx-1" style="background-color: rgb(13, 110, 253)"
         onclick="azzaih('<%= item.URL %>')"><%= item.name %></button>
         <% } %>

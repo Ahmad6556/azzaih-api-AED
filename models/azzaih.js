@@ -5,6 +5,7 @@ const Schema = mongoose.Schema;
 const azzaihSchema = new Schema({
   name: String,
   URL: String,
+  alnooa: String,
 });
 
 

@@ -40,7 +40,7 @@
               <a class="nav-link active" aria-current="page" href="/">الصفحة الرئيسية</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="/mnuat">منوعات</a>
+              <a class="nav-link active" href="/mnuat">عزاء</a>
             </li>
             <li class="nav-item">
               <a class="nav-link disabled" href="/admin">إدارة العزاء</a>
@@ -53,19 +53,56 @@
 
   <nav>
     <center>
-    <a class="btn btn-primary" href="/admin-add">إضافة عزاء</a><br><br>
+      <a class="btn btn-primary" href="/admin-add">إضافة</a><br><br>
 
-    <% item.forEach(item => { %>
-      <% if (item.name != null) { %>
-      <div class="card w-50 bg-dark text-white my-2">
-        <div class="card-body">
-          <h5 class="card-title"><%= item.name %></h5>
-          <a href="/admin-edit/<%= item._id %>" class="btn btn-info">تعديل</a>
-          <a href="/admin-delete/<%= item._id %>" class="btn btn-danger">حذف</a>
-        </div>
+      <div class="border border-danger mx-5 text-white">
+        <h1>عزاء</h1>
+        <% item.forEach(item=> { %>
+          <% if (item.name !=null && item.alnooa == "عزاء") { %>
+            <div class="card w-50 bg-dark text-white my-2">
+              <div class="card-body">
+                <h5 class="card-title">
+                  <%= item.name %>
+                </h5>
+                <a href="/admin-edit/<%= item._id %>" class="btn btn-info">تعديل</a>
+                <a href="/admin-delete/<%= item._id %>" class="btn btn-danger">حذف</a>
+              </div>
+            </div>
+            <% } %>
+              <% }) %>
       </div>
-      <% } %>
-    <% }) %>
+      <div class="border border-danger mx-5 text-white">
+        <h1>مولد</h1>
+        <% item.forEach(item=> { %>
+          <% if (item.name !=null && item.alnooa == "مولد") { %>
+            <div class="card w-50 bg-dark text-white my-2">
+              <div class="card-body">
+                <h5 class="card-title">
+                  <%= item.name %>
+                </h5>
+                <a href="/admin-edit/<%= item._id %>" class="btn btn-info">تعديل</a>
+                <a href="/admin-delete/<%= item._id %>" class="btn btn-danger">حذف</a>
+              </div>
+            </div>
+            <% } %>
+              <% }) %>
+      </div>
+      <div class="border border-danger mx-5 text-white">
+        <h1>وفاة</h1>
+        <% item.forEach(item=> { %>
+          <% if (item.name !=null && item.alnooa == "وفاة") { %>
+            <div class="card w-50 bg-dark text-white my-2">
+              <div class="card-body">
+                <h5 class="card-title">
+                  <%= item.name %>
+                </h5>
+                <a href="/admin-edit/<%= item._id %>" class="btn btn-info">تعديل</a>
+                <a href="/admin-delete/<%= item._id %>" class="btn btn-danger">حذف</a>
+              </div>
+            </div>
+            <% } %>
+              <% }) %>
+      </div>
     </center>
   </nav>
 </body>

@@ -40,7 +40,7 @@
               <a class="nav-link active" aria-current="page" href="/">الصفحة الرئيسية</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="/mnuat">منوعات</a>
+              <a class="nav-link active" href="/mnuat">عزاء</a>
             </li>
             <li class="nav-item">
               <a class="nav-link active" href="/admin">إدارة العزاء</a>
@@ -64,6 +64,15 @@
             id="floatingInput" placeholder="" required>
           <label class="text-white" for="floatingInput">الرابط الخاص</label>
         </div>
+        <select name="alnooa" class="form-select mb-3 bg-dark text-white aria-label="Default select example" required>
+            <option selected value="<%= item.alnooa %>">
+              <%= item.alnooa %>
+          <optgroup>
+            <option value="عزاء">عزاء</option>
+            <option value="مولد">مولد</option>
+            <option value="وفاة">وفاة</option>
+          </optgroup>
+        </select>
         <button data-linkid="<%= item._id %>" class="btn btn-primary create">تعديل</button>
       </form>
     </center>
@@ -87,9 +96,9 @@
     fetch(` /admin-delete/${articleId} `, { method: "DELETE" })
       .then((response) => response.json())
       .then((data) => window.location.href = data.mylink)
-        .catch((err) => {
-          console.log(err);
-        });
+      .catch((err) => {
+        console.log(err);
+      });
 
   })
 </script>
