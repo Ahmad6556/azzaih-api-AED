@@ -86,6 +86,20 @@ app.get("/wfah", (req, res) => {
     });
 })
 
+//wfah
+
+app.get("/duaa", (req, res) => {
+  azzaih.find()
+    .sort({ "name": 1 })
+    .then((result, resultM) => {
+      res.render("duaa", { item: result, itemM: resultM });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+})
+
+
 //admin
 
 app.get("/admin", (req, res) => {
