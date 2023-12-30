@@ -86,7 +86,7 @@ app.get("/wfah", (req, res) => {
     });
 })
 
-//wfah
+//duaa
 
 app.get("/duaa", (req, res) => {
   azzaih.find()
