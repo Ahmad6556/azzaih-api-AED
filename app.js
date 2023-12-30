@@ -285,7 +285,7 @@ app.delete("/admin-delete/:id", (req, res) => {
     });
 });
 
-//mllas
+//mlass
 
 app.get("/mlass", (req, res) => {
   mlass.find()
