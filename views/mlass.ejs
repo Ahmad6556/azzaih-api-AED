@@ -54,12 +54,17 @@
   </header>
   <center>
 
-  <nav class="nav">
-    <% item.forEach(item=> { %>
-      <a class="btn btn-info my-2 mx-2" href="/mlass/<%= item._id %>"><%= item.name %></a>
-      <% }) %>
+    <nav class="nav">
+      <% item.forEach(item=> { %>
+        <% if (item.name=="أختر النوع" ) { %>
+          <a class="btn btn-info my-2 mx-2" href="/mlass/<%= item._id %>">أخرى</a>
+          <% }else{ %>
+            <a class="btn btn-info my-2 mx-2" href="/mlass/<%= item._id %>">
+              <%= item.name %>
+            </a>
+            <% }}) %>
 
-  </nav>
+    </nav>
   </center>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
