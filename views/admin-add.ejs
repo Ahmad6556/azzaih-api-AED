@@ -72,6 +72,14 @@
             <option value="وفاة">وفاة</option>
           </optgroup>
         </select>
+        <select name="mlass" class="form-select mb-3 bg-dark text-white" aria-label="Default select example" required>
+          <option selected>اختر ملا</option>
+          <optgroup>
+            <% itemM.forEach(item => { %>
+              <option value="<%= item.name %>"><%= item.name %></option>
+            <% }) %>
+          </optgroup>
+        </select>
         <button class="btn btn-primary">إضافة</button>
       </form>
     </center>

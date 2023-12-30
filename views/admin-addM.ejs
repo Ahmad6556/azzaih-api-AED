@@ -53,37 +53,27 @@
 
   <nav>
     <center>
-      <form class="mx-4" action="/admin" method="post">
+      <form class="mx-4" action="/admin-addM" method="post">
         <div class="form-floating mb-3">
-          <input value="<%= item.name %>" name="name" type="text" class="form-control bg-dark text-white"
-            id="floatingInput" placeholder="" required>
-          <label class="text-white" for="floatingInput">أسم العزاء</label>
+          <input name="name" type="text" class="form-control bg-dark text-white" id="floatingInput" placeholder=""
+            required>
+          <label class="text-white" for="floatingInput">أسمه</label>
         </div>
-        <div class="form-floating mb-3">
-          <input value="<%= item.URL %>" name="URL" type="text" class="form-control bg-dark text-white"
-            id="floatingInput" placeholder="" required>
-          <label class="text-white" for="floatingInput">الرابط الخاص</label>
-        </div>
-        <select name="alnooa" class="form-select mb-3 bg-dark text-white aria-label="Default select example" required>
-            <option selected value="<%= item.alnooa %>">
-              <%= item.alnooa %>
-          <optgroup>
-            <option value="عزاء">عزاء</option>
-            <option value="مولد">مولد</option>
-            <option value="وفاة">وفاة</option>
-          </optgroup>
-        </select>
-                <select name="mlass" class="form-select mb-3 bg-dark text-white" aria-label="Default select example" required>
-          <option selected>اختر ملا</option>
-          <optgroup>
-            <% itemM.forEach(item => { %>
-              <option value="<%= item.name %>"><%= item.name %></option>
-            <% }) %>
-          </optgroup>
-        </select>
-
-        <button data-linkid="<%= item._id %>" class="btn btn-primary create">تعديل</button>
+        <button class="btn btn-primary">إضافة</button>
       </form>
+      <hr>
+      <% item.forEach(item=> { %>
+        <div class="card w-50 bg-dark text-white my-2">
+          <div class="card-body">
+            <h5 class="card-title">
+              <%= item.name %>
+            </h5>
+            <a href="/admin-editM/<%= item._id %>" class="btn btn-info">تعديل</a>
+            <a href="/admin-deleteM/<%= item._id %>" class="btn btn-danger">حذف</a>
+          </div>
+        </div>
+
+        <% }) %>
     </center>
   </nav>
 </body>
@@ -91,25 +81,5 @@
   integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
   integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
-<script>
-  const btnelement = document.querySelector(".create")
-  const articleId = btnelement.getAttribute("data-linkid");
-
-
-  // what is data ?
-  // { mylink: "/all-articles" }
-
-
-  btnelement.addEventListener("click", (eo) => {
-
-    fetch(` /admin-delete/${articleId} `, { method: "DELETE" })
-      .then((response) => response.json())
-      .then((data) => window.location.href = data.mylink)
-      .catch((err) => {
-        console.log(err);
-      });
-
-  })
-</script>
 
 </html>

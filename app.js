@@ -2,6 +2,7 @@ const express = require('express')
 const app = express()
 const port = 3000
 const azzaih = require("./models/azzaih");
+const mlass = require("./models/mlass");
 
 app.use(express.static('public'))
 app.set('view engine', 'ejs')
@@ -77,8 +78,8 @@ app.get("/mouled", (req, res) => {
 app.get("/wfah", (req, res) => {
   azzaih.find()
     .sort({ "name": 1 })
-    .then((result) => {
-      res.render("wfah", { item: result });
+    .then((result, resultM) => {
+      res.render("wfah", { item: result, itemM: resultM });
     })
     .catch((err) => {
       console.log(err);
@@ -119,7 +120,14 @@ app.get("/admin-add", (req, res) => {
   azzaih.find()
     .sort({ "name": 1 })
     .then((result) => {
-      res.render("admin-add", { item: result });
+      mlass.find()
+      .sort({ "name": 1 })
+      .then((resultM) => {
+        res.render("admin-add", { item: result, itemM: resultM });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     })
     .catch((err) => {
       console.log(err);
@@ -141,12 +149,46 @@ app.post("/admin-add", (req, res) => {
     });
 });
 
+//addM
+
+app.get("/admin-addM", (req, res) => {
+  mlass.find()
+    .sort({ "name": 1 })
+    .then((result) => {
+      res.render("admin-addM", { item: result });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+})
+
+app.post("/admin-addM", (req, res) => {
+  const azzaihC = new mlass(req.body);
+
+  console.log(req.body);
+
+  azzaihC
+    .save()
+    .then(result => {
+      res.redirect("/admin");
+    })
+    .catch(err => {
+      console.log(err);
+    });
+});
+
 //edit
 
 app.get("/admin-edit/:id", (req, res) => {
   azzaih.findById(req.params.id)
     .then((result) => {
-      res.render("admin-edit", { item: result });
+      mlass.find()
+      .then((resultM) => {
+        res.render("admin-edit", { item: result, itemM: resultM });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     })
     .catch((err) => {
       console.log(err);
@@ -180,6 +222,45 @@ app.delete("/admin-edit/:id", (req, res) => {
     });
 });
 
+//editM
+
+app.get("/admin-editM/:id", (req, res) => {
+  mlass.findById(req.params.id)
+    .then((result) => {
+      res.render("admin-editM", { item: result });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+})
+
+app.post("/admin-editM/:id", (req, res) => {
+  const azzaihC = new mlass(req.body);
+
+  console.log(req.body);
+
+  azzaihC
+    .save()
+    .then(result => {
+      res.redirect("/admin-addM");
+    })
+    .catch(err => {
+      console.log(err);
+    });
+});
+
+app.delete("/admin-editM/:id", (req, res) => {
+  mlass.findByIdAndDelete(req.params.id)
+
+    .then((params)=> {
+      res.json( {mylink: "/admin"} );
+    })
+
+    .catch((err)=> {
+      console.log(err);
+    });
+});
+
 //delete
 
 app.get("/admin-delete/:id", (req, res) => {
@@ -194,6 +275,59 @@ app.get("/admin-delete/:id", (req, res) => {
 
 app.delete("/admin-delete/:id", (req, res) => {
   azzaih.findByIdAndDelete(req.params.id)
+
+    .then((params) => {
+      res.json({ mylink: "/admin" });
+    })
+
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+//mllas
+
+app.get("/mlass", (req, res) => {
+  mlass.find()
+  .then((result) => {
+    res.render("mlass", {item: result})
+  })
+    .catch((err) => {
+      console.log(err);
+    });
+})
+
+app.get("/mlass/:id", (req, res) => {
+  mlass.findById(req.params.id)
+    .then((resultM) => {
+      azzaih.find()
+      .then((result) => {
+        res.render("mlassI", { item: result, itemM: resultM });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+})
+
+
+//delete
+
+app.get("/admin-deleteM/:id", (req, res) => {
+  mlass.findById(req.params.id)
+    .then((result) => {
+      res.render("admin-deleteM", { item: result });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+})
+
+app.delete("/admin-deleteM/:id", (req, res) => {
+  mlass.findByIdAndDelete(req.params.id)
 
     .then((params) => {
       res.json({ mylink: "/admin" });

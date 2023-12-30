@@ -54,36 +54,9 @@
   <nav>
     <center>
       <form class="mx-4" action="/admin" method="post">
-        <div class="form-floating mb-3">
-          <input value="<%= item.name %>" name="name" type="text" class="form-control bg-dark text-white"
-            id="floatingInput" placeholder="" required>
-          <label class="text-white" for="floatingInput">أسم العزاء</label>
-        </div>
-        <div class="form-floating mb-3">
-          <input value="<%= item.URL %>" name="URL" type="text" class="form-control bg-dark text-white"
-            id="floatingInput" placeholder="" required>
-          <label class="text-white" for="floatingInput">الرابط الخاص</label>
-        </div>
-        <select name="alnooa" class="form-select mb-3 bg-dark text-white aria-label="Default select example" required>
-            <option selected value="<%= item.alnooa %>">
-              <%= item.alnooa %>
-          <optgroup>
-            <option value="عزاء">عزاء</option>
-            <option value="مولد">مولد</option>
-            <option value="وفاة">وفاة</option>
-          </optgroup>
-        </select>
-                <select name="mlass" class="form-select mb-3 bg-dark text-white" aria-label="Default select example" required>
-          <option selected>اختر ملا</option>
-          <optgroup>
-            <% itemM.forEach(item => { %>
-              <option value="<%= item.name %>"><%= item.name %></option>
-            <% }) %>
-          </optgroup>
-        </select>
-
-        <button data-linkid="<%= item._id %>" class="btn btn-primary create">تعديل</button>
+        <button data-linkid="<%= item._id %>" class="btn btn-danger create">حذف</button>
       </form>
+      <a class="btn btn-primary" href="/admin">عودة</a>
     </center>
   </nav>
 </body>
@@ -102,12 +75,12 @@
 
   btnelement.addEventListener("click", (eo) => {
 
-    fetch(` /admin-delete/${articleId} `, { method: "DELETE" })
+    fetch(` /admin-editM/${articleId} `, { method: "DELETE" })
       .then((response) => response.json())
       .then((data) => window.location.href = data.mylink)
-      .catch((err) => {
-        console.log(err);
-      });
+        .catch((err) => {
+          console.log(err);
+        });
 
   })
 </script>

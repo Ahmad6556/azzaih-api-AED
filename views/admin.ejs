@@ -53,7 +53,8 @@
 
   <nav>
     <center>
-      <a class="btn btn-primary" href="/admin-add">إضافة</a><br><br>
+      <a class="btn btn-primary" href="/admin-add">إضافة</a>
+      <a class="btn btn-primary" href="/admin-addM">إضافة ملا</a><br><br>
 
       <div class="border border-danger mx-5 text-white">
         <h1>عزاء</h1>
@@ -64,6 +65,13 @@
                 <h5 class="card-title">
                   <%= item.name %>
                 </h5>
+                <p>
+                  <% if (item.mlass == "اختر ملا" || item.mlass == null) { %>
+                  آخر
+                  <% }else{ %>
+                  <%= item.mlass %>
+                  <% } %>
+                </p>
                 <a href="/admin-edit/<%= item._id %>" class="btn btn-info">تعديل</a>
                 <a href="/admin-delete/<%= item._id %>" class="btn btn-danger">حذف</a>
               </div>
@@ -80,6 +88,14 @@
                 <h5 class="card-title">
                   <%= item.name %>
                 </h5>
+                <p>
+                  <% if (item.mlass == "اختر ملا" || item.mlass == null) { %>
+                  آخر
+                  <% }else{ %>
+                  <%= item.mlass %>
+                  <% } %>
+                </p>
+
                 <a href="/admin-edit/<%= item._id %>" class="btn btn-info">تعديل</a>
                 <a href="/admin-delete/<%= item._id %>" class="btn btn-danger">حذف</a>
               </div>
@@ -96,6 +112,14 @@
                 <h5 class="card-title">
                   <%= item.name %>
                 </h5>
+                <p>
+                  <% if (item.mlass == "اختر ملا" || item.mlass == null) { %>
+                  آخر
+                  <% }else{ %>
+                  <%= item.mlass %>
+                  <% } %>
+                </p>
+
                 <a href="/admin-edit/<%= item._id %>" class="btn btn-info">تعديل</a>
                 <a href="/admin-delete/<%= item._id %>" class="btn btn-danger">حذف</a>
               </div>
