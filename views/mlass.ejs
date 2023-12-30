@@ -53,13 +53,14 @@
     </nav>
   </header>
   <center>
-  </center>
-  <nav class="nav" style="text-align: right; width: 25%; height: 100%; flex-wrap: wrap;">
+
+  <nav class="nav">
     <% item.forEach(item=> { %>
       <a class="btn btn-info my-2 mx-2" href="/mlass/<%= item._id %>"><%= item.name %></a>
       <% }) %>
 
   </nav>
+  </center>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
   integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
