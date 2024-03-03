@@ -127,6 +127,31 @@
             <% } %>
               <% }) %>
       </div>
+
+      <div class="border border-danger mx-5 text-white">
+        <h1>دعاء</h1>
+        <% item.forEach(item=> { %>
+          <% if (item.name !=null && item.alnooa == "دعاء") { %>
+            <div class="card w-50 bg-dark text-white my-2">
+              <div class="card-body">
+                <h5 class="card-title">
+                  <%= item.name %>
+                </h5>
+                <p>
+                  <% if (item.mlass == "اختر ملا" || item.mlass == null) { %>
+                  آخر
+                  <% }else{ %>
+                  <%= item.mlass %>
+                  <% } %>
+                </p>
+
+                <a href="/admin-edit/<%= item._id %>" class="btn btn-info">تعديل</a>
+                <a href="/admin-delete/<%= item._id %>" class="btn btn-danger">حذف</a>
+              </div>
+            </div>
+            <% } %>
+              <% }) %>
+      </div>
     </center>
   </nav>
 </body>
