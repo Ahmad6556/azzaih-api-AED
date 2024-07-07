@@ -135,13 +135,13 @@ app.get("/admin-add", (req, res) => {
     .sort({ "name": 1 })
     .then((result) => {
       mlass.find()
-      .sort({ "name": 1 })
-      .then((resultM) => {
-        res.render("admin-add", { item: result, itemM: resultM });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+        .sort({ "name": 1 })
+        .then((resultM) => {
+          res.render("admin-add", { item: result, itemM: resultM });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     })
     .catch((err) => {
       console.log(err);
@@ -150,17 +150,31 @@ app.get("/admin-add", (req, res) => {
 
 app.post("/admin-add", (req, res) => {
   const azzaihC = new azzaih(req.body);
-
-  console.log(req.body);
-
-  azzaihC
-    .save()
-    .then(result => {
-      res.redirect("/admin");
+  let isTrue = true
+  azzaih.find()
+    .then((result) => {
+      result.forEach(item => {
+        if (item.name == req.body.name) {
+          isTrue = false
+          console.log("is False")
+        }
+      });
+      if (isTrue == true) {
+        azzaihC
+          .save()
+          .then(result => {
+            res.redirect("/admin");
+          })
+          .catch(err => {
+            console.log(err);
+          });
+      }
     })
-    .catch(err => {
-      console.log(err);
-    });
+    .catch((bug) => {
+      console.log(bug)
+    })
+
+
 });
 
 //addM
@@ -178,17 +192,32 @@ app.get("/admin-addM", (req, res) => {
 
 app.post("/admin-addM", (req, res) => {
   const azzaihC = new mlass(req.body);
+  let IsTrue = true
+  mlass.find()
+    .then((result) => {
+      result.forEach(item => {
+        if (item.name == req.body.name) {
+          IsTrue = false
+        }
+      });
+      if (IsTrue == true) {
+        azzaihC
+          .save()
+          .then(result => {
+            res.redirect("/admin");
+          })
+          .catch(err => {
+            console.log(err);
+          });
+      }
+    })
+    .catch((bug) => {
+      console.log(bug);
+    })
 
   console.log(req.body);
 
-  azzaihC
-    .save()
-    .then(result => {
-      res.redirect("/admin");
-    })
-    .catch(err => {
-      console.log(err);
-    });
+
 });
 
 //edit
@@ -197,12 +226,12 @@ app.get("/admin-edit/:id", (req, res) => {
   azzaih.findById(req.params.id)
     .then((result) => {
       mlass.find()
-      .then((resultM) => {
-        res.render("admin-edit", { item: result, itemM: resultM });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+        .then((resultM) => {
+          res.render("admin-edit", { item: result, itemM: resultM });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     })
     .catch((err) => {
       console.log(err);
@@ -227,11 +256,11 @@ app.post("/admin-edit/:id", (req, res) => {
 app.delete("/admin-edit/:id", (req, res) => {
   azzaih.findByIdAndDelete(req.params.id)
 
-    .then((params)=> {
-      res.json( {mylink: "/admin"} );
+    .then((params) => {
+      res.json({ mylink: "/admin" });
     })
 
-    .catch((err)=> {
+    .catch((err) => {
       console.log(err);
     });
 });
@@ -266,11 +295,11 @@ app.post("/admin-editM/:id", (req, res) => {
 app.delete("/admin-editM/:id", (req, res) => {
   mlass.findByIdAndDelete(req.params.id)
 
-    .then((params)=> {
-      res.json( {mylink: "/admin"} );
+    .then((params) => {
+      res.json({ mylink: "/admin" });
     })
 
-    .catch((err)=> {
+    .catch((err) => {
       console.log(err);
     });
 });
@@ -303,9 +332,9 @@ app.delete("/admin-delete/:id", (req, res) => {
 
 app.get("/mlass", (req, res) => {
   mlass.find()
-  .then((result) => {
-    res.render("mlass", {item: result})
-  })
+    .then((result) => {
+      res.render("mlass", { item: result })
+    })
     .catch((err) => {
       console.log(err);
     });
@@ -315,12 +344,12 @@ app.get("/mlass/:id", (req, res) => {
   mlass.findById(req.params.id)
     .then((resultM) => {
       azzaih.find()
-      .then((result) => {
-        res.render("mlassI", { item: result, itemM: resultM });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+        .then((result) => {
+          res.render("mlassI", { item: result, itemM: resultM });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     })
     .catch((err) => {
       console.log(err);
